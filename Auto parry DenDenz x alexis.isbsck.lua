@@ -5,7 +5,17 @@ local d = loadstring(game:HttpGet("https://raw.githubusercontent.com/Alexisisbac
 
 local e = false
 local ping = game:GetService("Stats"):FindFirstChild("Network"):FindFirstChild("ServerStatsItem"):FindFirstChild("Data Ping") -- Obtiene el ping
-local fps = game:GetService("RunService").RenderStepped:Wait() -- Obtiene el tiempo entre frames
+
+local function getFrameTime()
+    local lastFrame = tick()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        local currentFrame = tick()
+        fps = currentFrame - lastFrame
+        lastFrame = currentFrame
+    end)
+end
+
+getFrameTime()
 
 spawn(function()
     b.PreRender:Connect(function()
@@ -20,8 +30,7 @@ spawn(function()
         end
 
         local latency = ping:GetValue() / 1000 -- Calcula la latencia en segundos
-        local frameTime = fps -- Tiempo entre frames en segundos
-        local predictedPosition = d.PredictFuturePosition(g, latency + frameTime)  -- Predice la posición futura en base a la latencia y FPS
+        local predictedPosition = d.PredictFuturePosition(g, latency + fps)  -- Predice la posición futura en base a la latencia y FPS
 
         local j = c.Character.PrimaryPart.Position
         local direction = (j - predictedPosition).Unit
