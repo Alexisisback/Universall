@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://github.com/Alexisisback/Universall/blob/main/Aquaracerprotect.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Alexisisback/Universall/main/Aquaracerprotect.lua"))()
