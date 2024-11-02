@@ -1,1 +1,7 @@
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/86a03802bc6ed18306018de30c6bac2d.lua"))()
+-- Script para expulsar al usuario, copiar enlace y mostrar mensaje
+local message = "Update key System: discord.gg/lunaxrbx"
+local inviteLink = "discord.gg/lunaxrbx"
+
+game.Players.LocalPlayer:Kick(message)
+
+setclipboard(inviteLink)
